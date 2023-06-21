@@ -84,4 +84,18 @@ def filter_emp(request):
     else:
         return HttpResponse("Error")
 
+def efficency_graph(request):
+    first_name = Employee.objects.all().values_list('first_name', flat=True)[0:5]
+    efficiency = Employee.objects.all().values_list('efficiency', flat=True)[0:5]
+    
+    aa = [a for a in first_name]
+    bb = [b for b in efficiency]
+
+    print(aa, bb)
+
+    context = {
+        'first_name': aa,
+        'efficiency': bb
+    }
+    return render(request, 'efficency_graph.html', context)
 

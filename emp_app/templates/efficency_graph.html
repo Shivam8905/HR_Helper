@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    {{first_name}}
+    {{efficiency}}
+</body>
+
+<script>
+    var xValues = "{{first_name}}";
+    var yValues = "{{efficiency}}";
+    
+    xValues = xValues.split(',')
+    yValues = yValues.split(',')
+
+    if(xValues != null)
+    {
+        xValues[0] = xValues[0].substring(1)
+        yValues[0] = yValues[0].substring(1)
+        
+        let l = xValues.length
+        console.log(l)
+        xValues[xValues.length - 1] = xValues[xValues.length - 1].slice(0, l)
+        yValues[yValues.length - 1] = yValues[yValues.length - 1].substring(1)
+    }    
+
+    let xx = []
+    let yy = []
+
+    for(var i =0; i < xValues.length; i++){
+        xx.push(xValues[i])
+        yy.push(yValues[i])
+    }
+
+    console.log(xx)
+    console.log(yy)
+
+    // xx = ['TAPAN']
+    // yy = ["17"]
+
+    new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: xx,
+        datasets: [{
+          data: yy
+        }]
+      },
+      options: {
+        legend: {display: false},
+        title: {
+          display: true,
+          text: "Efficency Graph"
+        },
+        scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Developer Name'
+                            }
+                        }],
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 100
+                            }
+                        }]
+                },
+      }
+    });
+    </script>
+</html>
