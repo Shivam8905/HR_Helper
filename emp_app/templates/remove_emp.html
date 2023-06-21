@@ -12,12 +12,18 @@
   </head>
   <body>
     <div class="container">
-        <h1>HR</h1>
+        <h1>Remove An Employee</h1>
         <hr>
-        <a class="btn btn-primary" href="/all_emp" role="button">View All Employee</a>
-        <a class="btn btn-primary" href="/add_emp" role="button">Add An Employee</a>
-        <a class="btn btn-primary" href="/remove_emp" role="button">Remove An Employee</a>
-        <a class="btn btn-primary" href="/filter_emp" role="button">Filter An Employee</a>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Choose Employee To Remove
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% for emp in emps %}
+            <li><a class="dropdown-item" href="/remove_emp/{{emp.id}}">{{emp.first_name}} {{emp.last_name}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
