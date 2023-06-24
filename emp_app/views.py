@@ -69,7 +69,7 @@ def filter_emp(request):
         if name:
             emps = emps.filter(Q(first_name__icontains=name) | Q(last_name__icontains=name))
         if dept:
-            emps = emps.filter(dept__name=dept)
+            emps = emps.filter(department__name=dept)
         if role:
             emps = emps.filter(role__name=role)
 
@@ -85,9 +85,9 @@ def filter_emp(request):
         return HttpResponse("Error")
 
 def efficency_graph(request):
-    first_name = Employee.objects.all().values_list('first_name', flat=True)[0:5]
-    efficiency = Employee.objects.all().values_list('efficiency', flat=True)[0:5]
-    
+    first_name = Employee.objects.all().values_list('first_name', flat=True)
+    efficiency = Employee.objects.all().values_list('efficiency', flat=True)
+
     aa = [a for a in first_name]
     bb = [b for b in efficiency]
 
